@@ -11,6 +11,14 @@ namespace shell
         public ShellSettingsDialog()
         {
             InitializeComponent();
+
+            bulletRadiusTb.Text     = $"{Settings.BulletRadius:0.00}";
+            flangeEdgeSizeTb.Text   = $"{Settings.FlangeEdge:0.00}";
+            flangeSizeTb.Text       = $"{Settings.FlangeSize:0.00}";
+            lowerCapsuleSizeTb.Text = $"{Settings.LowerCapsuleRadius:0.00}";
+            shellRadiusTb.Text      = $"{Settings.ShellRadius:0.00}";
+            shellSizeTb.Text        = $"{Settings.ShellSize:0.00}";
+            upperCapsuleSizeTb.Text = $"{Settings.UpperCapsuleRadius:0.00}";
         }
 
         private void dlgOkButton_Click(object sender, System.EventArgs e)
