@@ -23,13 +23,35 @@ namespace shell
 
         private void dlgOkButton_Click(object sender, System.EventArgs e)
         {
-            Settings.BulletRadius       = Convert.ToDouble(bulletRadiusTb.Text, CultureInfo.InvariantCulture);
-            Settings.FlangeEdge         = Convert.ToDouble(flangeEdgeSizeTb.Text, CultureInfo.InvariantCulture);
-            Settings.FlangeSize         = Convert.ToDouble(flangeSizeTb.Text, CultureInfo.InvariantCulture);
-            Settings.LowerCapsuleRadius = Convert.ToDouble(lowerCapsuleSizeTb.Text, CultureInfo.InvariantCulture);
-            Settings.ShellRadius        = Convert.ToDouble(shellRadiusTb.Text, CultureInfo.InvariantCulture);
-            Settings.ShellSize          = Convert.ToDouble(shellSizeTb.Text, CultureInfo.InvariantCulture);
-            Settings.UpperCapsuleRadius = Convert.ToDouble(upperCapsuleSizeTb.Text, CultureInfo.InvariantCulture);
+            if (bulletRadiusTb.Text == string.Empty || flangeEdgeSizeTb.Text == string.Empty || flangeSizeTb.Text == string.Empty || lowerCapsuleSizeTb.Text == string.Empty ||
+                shellRadiusTb.Text == string.Empty || shellSizeTb.Text == string.Empty || upperCapsuleSizeTb.Text == string.Empty)
+            {
+                MessageBox.Show("Одно из необходимых значений не задано.");
+                return;
+            }
+
+            try
+            {
+                Settings.BulletRadius       = Convert.ToDouble(bulletRadiusTb.Text, CultureInfo.InvariantCulture);
+                Settings.FlangeEdge         = Convert.ToDouble(flangeEdgeSizeTb.Text, CultureInfo.InvariantCulture);
+                Settings.FlangeSize         = Convert.ToDouble(flangeSizeTb.Text, CultureInfo.InvariantCulture);
+                Settings.LowerCapsuleRadius = Convert.ToDouble(lowerCapsuleSizeTb.Text, CultureInfo.InvariantCulture);
+                Settings.ShellRadius        = Convert.ToDouble(shellRadiusTb.Text, CultureInfo.InvariantCulture);
+                Settings.ShellSize          = Convert.ToDouble(shellSizeTb.Text, CultureInfo.InvariantCulture);
+                Settings.UpperCapsuleRadius = Convert.ToDouble(upperCapsuleSizeTb.Text, CultureInfo.InvariantCulture);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("В одно из полей введена строка, а не число.");
+                return;
+            }
+
+            if (Settings.BulletRadius <= 0.0 || Settings.ShellSize <= 0.0 || Settings.ShellRadius <= 0.0 || Settings.ShellRadius <= Settings.BulletRadius || 
+                Settings.UpperCapsuleRadius >= Settings.ShellRadius || Settings.LowerCapsuleRadius >= Settings.ShellRadius)
+            {
+                MessageBox.Show("Введены неверные данные");
+                return;
+            }
 
             this.DialogResult = DialogResult.OK;
         }
