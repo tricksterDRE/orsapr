@@ -40,14 +40,15 @@ namespace shell
                 Settings.ShellSize          = Convert.ToDouble(shellSizeTb.Text, CultureInfo.InvariantCulture);
                 Settings.UpperCapsuleRadius = Convert.ToDouble(upperCapsuleSizeTb.Text, CultureInfo.InvariantCulture);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 MessageBox.Show("В одно из полей введена строка, а не число.");
                 return;
             }
 
             if (Settings.BulletRadius <= 0.0 || Settings.ShellSize <= 0.0 || Settings.ShellRadius <= 0.0 || Settings.ShellRadius <= Settings.BulletRadius || 
-                Settings.UpperCapsuleRadius >= Settings.ShellRadius || Settings.LowerCapsuleRadius >= Settings.ShellRadius)
+                Settings.UpperCapsuleRadius >= Settings.ShellRadius || Settings.LowerCapsuleRadius >= Settings.ShellRadius || Settings.ShellSize <= Settings.FlangeSize ||
+                Settings.FlangeSize <= Settings.FlangeEdge || (Settings.ShellRadius - Settings.FlangeEdge / 2.0) <= (Settings.LowerCapsuleRadius + Settings.FlangeEdge / 4.0))
             {
                 MessageBox.Show("Введены неверные данные");
                 return;

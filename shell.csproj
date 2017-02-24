@@ -9,8 +9,9 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>shell</RootNamespace>
     <AssemblyName>shell</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -23,11 +24,12 @@
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
+    <Optimize>false</Optimize>
     <OutputPath>bin\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x64</PlatformTarget>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="AcCoreMgd, Version=19.0.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -82,12 +84,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="libacadtest\Assertions.cs" />
+    <Compile Include="libacadtest\TestCase.cs" />
+    <Compile Include="libacadtest\TestResult.cs" />
+    <Compile Include="libacadtest\TestSuite.cs" />
+    <Compile Include="libacadtest\Utils.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="ShellApp.cs" />
+    <Compile Include="Shell.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ShellSettings.cs" />
     <Compile Include="ShellSettingsDialog.cs">
@@ -96,6 +103,8 @@
     <Compile Include="ShellSettingsDialog.Designer.cs">
       <DependentUpon>ShellSettingsDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="tests\ShellRendererLoadTest.cs" />
+    <Compile Include="tests\ShellServiceTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -112,6 +121,7 @@
   <ItemGroup>
     <Resource Include="shell.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
